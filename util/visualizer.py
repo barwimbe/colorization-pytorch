@@ -1,11 +1,16 @@
+from PIL import Image
 import numpy as np
 import os
 import ntpath
 import time
 from . import util
 from . import html
-from scipy.misc import imresize
+# this is now deprecated:
+#from scipy.misc import imresize
 
+
+def imresize(im, size, unused_interp):
+    return np.array(Image.fromarray(im).resize(size, Image.BICUBIC))
 
 # save image to the disk
 def save_images(webpage, visuals, image_path, aspect_ratio=1.0, width=256):
